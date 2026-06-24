@@ -64,7 +64,7 @@ def build_cursor_response(products, limit):
     if has_more and products:
         last = products[-1]
         response["next_cursor"] = {
-            "cursor_time": last["created_at"],
+            "cursor_time": last["updated_at"],
             "cursor_id":   last["id"],
         }
 

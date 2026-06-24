@@ -30,9 +30,9 @@ def fetch_products(snapshot_time, limit, category=None, cursor_time=None, cursor
                 SELECT id, name, category, price,
                        created_at, updated_at
                 FROM   products
-                WHERE  created_at <= %(snapshot_time)s
+                WHERE  updated_at <= %(snapshot_time)s
                   AND  (%(category)s IS NULL OR category = %(category)s)
-                ORDER  BY created_at DESC, id DESC
+                ORDER  BY updated_at DESC, id DESC
                 LIMIT  %(limit)s
             """, {
                 "snapshot_time": snapshot_time,
@@ -50,10 +50,10 @@ def fetch_products(snapshot_time, limit, category=None, cursor_time=None, cursor
                 SELECT id, name, category, price,
                        created_at, updated_at
                 FROM   products
-                WHERE  created_at <= %(snapshot_time)s
-                  AND  (created_at, id) < (%(cursor_time)s, %(cursor_id)s)
+                WHERE  updated_at <= %(snapshot_time)s
+                  AND  (updated_at, id) < (%(cursor_time)s, %(cursor_id)s)
                   AND  (%(category)s IS NULL OR category = %(category)s)
-                ORDER  BY created_at DESC, id DESC
+                ORDER  BY updated_at DESC, id DESC
                 LIMIT  %(limit)s
             """, {
                 "snapshot_time": snapshot_time,
