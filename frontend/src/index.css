@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Theme tokens (Tailwind v4 CSS-first config) ── */
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-bg-base:       #0a0b0f;
+  --color-bg-surface:    #111318;
+  --color-bg-elevated:   #181b22;
+  --color-bg-card:       #1c2030;
+  --color-bg-card-hover: #202436;
+
+  --color-border-subtle: rgba(255,255,255,0.06);
+  --color-border-base:   rgba(255,255,255,0.10);
+  --color-border-strong: rgba(255,255,255,0.18);
+
+  --color-text-primary:   #f0f2f8;
+  --color-text-secondary: #8a90a8;
+  --color-text-muted:     #555c78;
+
+  --color-accent:        #6c63ff;
+  --color-accent-bright: #7c73ff;
+  --color-accent-glow:   rgba(108,99,255,0.25);
+  --color-accent-subtle: rgba(108,99,255,0.10);
+
+  --color-green:        #34d399;
+  --color-green-subtle: rgba(52,211,153,0.12);
+  --color-amber:        #fbbf24;
+  --color-amber-subtle: rgba(251,191,36,0.12);
+  --color-rose:         #fb7185;
+  --color-rose-subtle:  rgba(251,113,133,0.12);
+
+  --shadow-card: 0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,0.6);
+}
+
+/* ── Base Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background: var(--color-bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+body { min-height: 100vh; background: var(--color-bg-base); }
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg-base); }
+::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.animate-fade-in-up { animation: fadeInUp 0.35s ease both; }
+.animate-fade-in    { animation: fadeIn   0.15s ease both; }
+.animate-pulse-op   { animation: pulse-opacity 1.5s ease-in-out infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, var(--color-bg-elevated) 25%, var(--color-bg-card-hover) 50%, var(--color-bg-elevated) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+}
+.animate-spin { animation: spin 0.7s linear infinite; }
