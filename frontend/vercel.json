@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://product-catalog-backend-kzr2.onrender.com/api/$1"
+    }
+  ]
+}
